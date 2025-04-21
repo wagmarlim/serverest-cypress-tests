@@ -1,0 +1,41 @@
+# .gitignore
+
+# Dependências
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Diretórios de saída do Cypress
+cypress/screenshots/
+cypress/videos/
+
+# Relatórios temporários
+cypress/results/
+allure-results/
+mochawesome-report/
+
+# Configurações locais do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ambiente/variáveis (se houver)
+.env
+.env.local
+
+# Arquivos do VSCode
+.vscode/
+
+# Cache do Cypress
+cypress/cache/
+Cypress/
+
+# Pasta de builds, se houver
+dist/
+build/
+
+# Outros
+.idea/
+
