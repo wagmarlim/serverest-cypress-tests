@@ -20,7 +20,7 @@ Este repositório contém cenários E2E automatizados para o frontend e testes d
   npm install --save-dev cypress-file-upload
   ```
 
-  - Para melhor funcionamento da exclusão de screenshots e videos ao começar uma nova execução dos testes, vamos usar o pacote fs-extra que ajuda a lidar com diretórios e funciona melhor em diferentes sistemas operacionais:
+- Para melhor funcionamento da exclusão de screenshots e videos ao começar uma nova execução dos testes, vamos usar pacote `fs-extra` que ajuda a lidar com diretórios e funciona melhor em diferentes sistemas operacionais:
   ```bash
   npm install fs-extra --save-dev
   ```
@@ -151,6 +151,31 @@ Contém scripts auxiliares que podem ser usados durante a execução do Cypress.
 - **cleanCypressDirs.js**: Script para limpar os diretórios de screenshots e vídeos antes da execução dos testes, garantindo que os dados antigos não interfiram nos novos testes.
 
 ---
+
+## 📌 Funcionalidades Testadas
+
+## ✅ Frontend
+
+- Login de usuários
+- Cadastro de produtos com imagem
+- Listagem e exclusão de produtos
+- Cadastro e exclusão de usuários
+- Intercepts para validação de requisições XHR ((XML HTTP Request))
+- Upload de imagem via cypress-file-upload
+
+## ✅ API
+
+- Login via API
+- Validação de senha errada
+- Validação de email inexistente
+- Cadastro de produtos com token
+- Validação de produto duplicado
+- Atualização e exclusão de produtos
+- Cadastrar novo usuário
+- Validar cadastro de usuário existente
+- Listar usuários cadastrados e encontrar usuário cadastrado anteriomente
+- Deletar usuário cadastrado
+
 
 ## 🤝 Contribuindo
 
