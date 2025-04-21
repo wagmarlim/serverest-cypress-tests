@@ -1,0 +1,14 @@
+{
+    "produtoValido": {
+      "nome": "Produto Cypress",
+      "preco": 500,
+      "descricao": "Produto criado via API",
+      "quantidade": 10
+    },
+    "produtoAtualizado": {
+      "nome": "Produto Atualizado",
+      "preco": 750,
+      "descricao": "Atualizado via teste",
+      "quantidade": 5
+    }
+  }

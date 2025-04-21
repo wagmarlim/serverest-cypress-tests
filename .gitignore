@@ -30,7 +30,6 @@ Thumbs.db
 
 # Cache do Cypress
 cypress/cache/
-Cypress/
 
 # Pasta de builds, se houver
 dist/

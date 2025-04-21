@@ -1,0 +1,14 @@
+{
+    "usuarioValido": {
+      "email": "wagmarlim@gmail.com",
+      "password": "Test1234"
+    },
+    "senhaInvalida": {
+      "email": "wagmarlim@gmail.com",
+      "password": "senhaErrada"
+    },
+    "emailInvalido": {
+      "email": "inexistente@testenull.com",
+      "password": "teste"
+    }
+  }
