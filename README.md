@@ -159,3 +159,7 @@ Contém scripts auxiliares que podem ser usados durante a execução do Cypress.
    ```
 5. Abra um pull request.
 
+---
+
+## ✍️ Autor
+Desenvolvido por Wagner Campos Martins de Lima
