@@ -2,13 +2,28 @@
 
 Este repositório contém cenários E2E automatizados para o frontend e testes de API da aplicação Serverest.
 
+**Links:**
+- API: https://serverest.dev/
+- FrontEnd: https://front.serverest.dev/
+
 ## ✅ Pré-requisitos
 
 - [Node.js](https://nodejs.org/)
 - npm ou yarn
 - Git instalado
-- Cypress (instalado via `npm install`)  
-    - `npm install cypress --save-dev`
+- Cypress (instalado via `npm install`)
+  ```bash
+  npm install cypress --save-dev
+  ```
+- Para fazer testes que fazem upload de arquivo, é necessário instalar o plugin `cypress-file-upload`:
+  ```bash
+  npm install --save-dev cypress-file-upload
+  ```
+
+  - Para melhor funcionamento da exclusão de screenshots e videos ao começar uma nova execução dos testes, vamos usar o pacote fs-extra que ajuda a lidar com diretórios e funciona melhor em diferentes sistemas operacionais:
+  ```bash
+  npm install fs-extra --save-dev
+  ```
 
 ---
 
@@ -26,12 +41,12 @@ npm install
 
 ## 🧪 Execução dos Testes
 
-### Abrir o Cypress com interface gráfica:
+Abrir o Cypress com interface gráfica:
 ```bash
 npm test
 ```
 
-### Executar todos os testes em modo headless:
+Executar todos os testes em modo headless:
 ```bash
 npx cypress run
 ```
@@ -40,14 +55,14 @@ npx cypress run
 
 ## 🧹 Limpeza automática de evidências anteriores
 
-Antes de cada execução, o script `cleanCypressDirs.js` é executado para remover diretórios antigos de screenshots e vídeos. 
+Antes de cada execução, o script `cleanCypressDirs.js` é executado para remover diretórios antigos de screenshots e vídeos.
 Ele pode ser encontrado em `scripts/cleanCypressDirs.js`.
 
 ---
 
 ## 📁 Estrutura de Pastas
 
-```bash
+```
 cypress/
 ├── e2e/
 │   ├── api/
@@ -76,6 +91,7 @@ cypress/
 ├── support/
 │   ├── commands.js
 │   ├── e2e.js
+│
 ├── screenshots/
 ├── videos/
 └── scripts/
@@ -93,41 +109,36 @@ Contém os testes automatizados organizados por categoria (API e Frontend).
 
 #### `api/`
 Contém os testes de API, que validam a integração da aplicação com os serviços backend.
-
-- `loginValidations.cy.js`: Testes para validar o login de usuários na aplicação.
-- `productsValidations.cy.js`: Testes para validar a criação, atualização e exclusão de produtos.
-- `userValidations.cy.js`: Testes para validar a criação, atualização e exclusão de usuários.
+- **loginValidations.cy.js**: Testes para validar o login de usuários na aplicação.
+- **productsValidations.cy.js**: Testes para validar a criação, atualização e exclusão de produtos.
+- **userValidations.cy.js**: Testes para validar a criação, atualização e exclusão de usuários.
 
 #### `frontend/`
 Contém os testes E2E para o frontend da aplicação.
-
-- `validacaoLogin.cy.js`: Testes para validar o processo de login no frontend.
-- `validacaoProdutos.cy.js`: Testes para validar a criação, visualização e exclusão de produtos no frontend.
-- `validacaoUsuario.cy.js`: Testes para validar a criação, visualização e exclusão de usuários no frontend.
+- **validacaoLogin.cy.js**: Testes para validar o processo de login no frontend.
+- **validacaoProdutos.cy.js**: Testes para validar a criação, visualização e exclusão de produtos no frontend.
+- **validacaoUsuario.cy.js**: Testes para validar a criação, visualização e exclusão de usuários no frontend.
 
 ### `cypress/fixtures/`
 Contém os arquivos de dados de teste (fixtures) usados nos testes.
-
-- `login.json`: Dados de login utilizados para realizar testes de autenticação.
-- `produtos.png`: Imagem de exemplo usada em testes de cadastro de produtos.
-- `produtos.json`: Dados de exemplo para a criação de produtos.
-- `usuarios.json`: Dados de exemplo para a criação de usuários.
+- **login.json**: Dados de login utilizados para realizar testes de autenticação.
+- **produtos.png**: Imagem de exemplo usada em testes de cadastro de produtos.
+- **produtos.json**: Dados de exemplo para a criação de produtos.
+- **usuarios.json**: Dados de exemplo para a criação de usuários.
 
 ### `cypress/pageObjects/`
 Contém os arquivos de Page Objects, que encapsulam interações com a interface do usuário (UI) para facilitar a reutilização e a manutenção dos testes.
-
-- `cadastroProdutoPage.js`: Página de cadastro de produtos.
-- `cadastroUsuarioAdminPage.js`: Página de cadastro de usuários com perfil de admin.
-- `cadastroUsuarioLoginPage.js`: Página de cadastro de usuários para login.
-- `listaProdutosPage.js`: Página que lista os produtos cadastrados.
-- `listaUsuariosPage.js`: Página que lista os usuários cadastrados.
-- `loginPage.js`: Página de login, onde o usuário insere suas credenciais.
+- **cadastroProdutoPage.js**: Página de cadastro de produtos.
+- **cadastroUsuarioAdminPage.js**: Página de cadastro de usuários com perfil de admin.
+- **cadastroUsuarioLoginPage.js**: Página de cadastro de usuários para login.
+- **listaProdutosPage.js**: Página que lista os produtos cadastrados.
+- **listaUsuariosPage.js**: Página que lista os usuários cadastrados.
+- **loginPage.js**: Página de login, onde o usuário insere suas credenciais.
 
 ### `cypress/support/`
 Contém arquivos de suporte para os testes.
-
-- `commands.js`: Arquivo onde comandos customizados são definidos, como login automatizado e outras funções reutilizáveis.
-- `e2e.js`: Configurações globais para os testes E2E.
+- **commands.js**: Arquivo onde comandos customizados são definidos, como login automatizado e outras funções reutilizáveis.
+- **e2e.js**: Configurações globais para os testes E2E.
 
 ### `cypress/screenshots/`
 Contém as capturas de tela geradas durante a execução dos testes. As imagens são salvas automaticamente quando há falhas nos testes.
@@ -137,8 +148,7 @@ Contém os vídeos das execuções dos testes. As gravações são feitas quando
 
 ### `cypress/scripts/`
 Contém scripts auxiliares que podem ser usados durante a execução do Cypress.
-
-- `cleanCypressDirs.js`: Script para limpar os diretórios de screenshots e vídeos antes da execução dos testes, garantindo que os dados antigos não interfiram nos novos testes.
+- **cleanCypressDirs.js**: Script para limpar os diretórios de screenshots e vídeos antes da execução dos testes, garantindo que os dados antigos não interfiram nos novos testes.
 
 ---
 
@@ -162,4 +172,5 @@ Contém scripts auxiliares que podem ser usados durante a execução do Cypress.
 ---
 
 ## ✍️ Autor
-Desenvolvido por Wagner Campos Martins de Lima
+Desenvolvido por **Wagner Campos Martins de Lima**
+
