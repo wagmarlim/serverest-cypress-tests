@@ -1,10 +1,10 @@
 {
     "loginValido": {
-      "email": "wagmarlim@gmail.com",
-      "senha": "Test1234"
+      "email": "fulano@qa.com",
+      "senha": "teste"
     },
     "loginSenhaInvalida": {
-        "email": "wagmarlim@gmail.com",
+        "email": "fulano@qa.com",
         "senha": "senhaErrada"
       },
       "loginEmailInexistente": {
