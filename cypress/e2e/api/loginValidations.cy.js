@@ -39,3 +39,19 @@ describe('API - Login com validações', () => {
     })
   })
 })
+
+it('Não deve logar com campos vazios', () => {
+  cy.request({
+    method: 'POST',
+    url: `${Cypress.env('apiUrl')}/login`,
+    failOnStatusCode: false,
+    body: {}
+  }).then((res) => {
+  expect(res.status).to.eq(400)
+  // API returns validation errors per-field (email/password) rather than a single message
+  expect(res.body).to.have.property('email')
+  expect(res.body.email).to.eq('email é obrigatório')
+  expect(res.body).to.have.property('password')
+  expect(res.body.password).to.eq('password é obrigatório')
+  })
+})

@@ -1,10 +1,10 @@
 {
     "loginValido": {
-      "email": "fulano@qa.com",
+      "email": "beltrano@qa.com.br",
       "senha": "teste"
     },
     "loginSenhaInvalida": {
-        "email": "fulano@qa.com",
+        "email": "beltrano@qa.com.br",
         "senha": "senhaErrada"
       },
       "loginEmailInexistente": {
