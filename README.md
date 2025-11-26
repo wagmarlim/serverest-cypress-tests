@@ -1,35 +1,35 @@
-# Testes Automatizados com Cypress - Serverest
+# Automated Tests with Cypress - Serverest
 
-Este repositório contém cenários E2E automatizados para o frontend e testes de API da aplicação Serverest.
+This repository contains automated E2E scenarios for the frontend and API tests of the Serverest application.
 
 **Links:**
 - API: https://serverest.dev/
 - FrontEnd: https://front.serverest.dev/
 
-## ✅ Pré-requisitos
+## ✅ Prerequisites
 
 - [Node.js](https://nodejs.org/)
-- npm ou yarn
-- Git instalado
-- Cypress (instalado via `npm install`)
+- npm or yarn
+- Git installed
+- Cypress (installed via npm)
   ```bash
   npm install cypress --save-dev
   ```
-- Para fazer testes que fazem upload de arquivo, é necessário instalar o plugin `cypress-file-upload`:
+- To perform tests that involve uploading files, you need to install the `cypress-file-upload` plugin:
   ```bash
   npm install --save-dev cypress-file-upload
   ```
 
-- Para melhor funcionamento da exclusão de screenshots e videos ao começar uma nova execução dos testes, vamos usar pacote `fs-extra` que ajuda a lidar com diretórios e funciona melhor em diferentes sistemas operacionais:
+- For better performance in excluding screenshots and videos when starting a new test run, we will use the `fs-extra` package, which helps manage directories and works better on different operating systems:
   ```bash
   npm install fs-extra --save-dev
   ```
 
 ---
 
-## 📦 Instalação
+## 📦 Installation
 
-Clone o projeto e instale as dependências:
+Clone the project and install the dependencies:
 
 ```bash
 git clone https://github.com/seu-usuario/serverest-cypress-tests.git
@@ -39,24 +39,24 @@ npm install
 
 ---
 
-## 🧪 Execução dos Testes
+## 🧪 Running the Tests
 
-Abrir o Cypress com interface gráfica:
+Open Cypress with GUI:
 ```bash
 npm test
 ```
 
-Executar todos os testes em modo headless:
+Run all tests in headless mode:
 ```bash
 npx cypress run
 ```
 
 ---
 
-## 🧹 Limpeza automática de evidências anteriores
+## 🧹 Automatic Cleanup of Old Evidence
 
-Antes de cada execução, o script `cleanCypressDirs.js` é executado para remover diretórios antigos de screenshots e vídeos.
-Ele pode ser encontrado em `scripts/cleanCypressDirs.js`.
+Before each test run, the script cleanCypressDirs.js deletes old screenshot and video folders.
+It could be found in `scripts/cleanCypressDirs.js`.
 
 ---
 
@@ -100,55 +100,55 @@ cypress/
 
 ---
 
-## 🧱 Estrutura dos Testes
+## 🧱 Test Structure
 
-A estrutura de diretórios e arquivos está organizada da seguinte forma:
+The test suite is organized as follows:
 
 ### `cypress/e2e/`
-Contém os testes automatizados organizados por categoria (API e Frontend).
+Contains automated tests divided into API and Frontend.
 
 #### `api/`
-Contém os testes de API, que validam a integração da aplicação com os serviços backend.
-- **loginValidations.cy.js**: Testes para validar o login de usuários na aplicação.
-- **productsValidations.cy.js**: Testes para validar a criação, atualização e exclusão de produtos.
-- **userValidations.cy.js**: Testes para validar a criação, atualização e exclusão de usuários.
+It contains API tests that validate the application's integration with backend services.
+- **loginValidations.cy.js**: Validates user login via API.
+- **productsValidations.cy.js**: Validates product creation, update, and deletion.
+- **userValidations.cy.js**: Validates user creation, update, and deletion.
 
 #### `frontend/`
-Contém os testes E2E para o frontend da aplicação.
-- **validacaoLogin.cy.js**: Testes para validar o processo de login no frontend.
-- **validacaoProdutos.cy.js**: Testes para validar a criação, visualização e exclusão de produtos no frontend.
-- **validacaoUsuario.cy.js**: Testes para validar a criação, visualização e exclusão de usuários no frontend.
+Contains the E2E tests for the application's frontend.
+- **validacaoLogin.cy.js**: Validates the login process in the UI.
+- **validacaoProdutos.cy.js**: Validates creation, visualization, and deletion of products in the UI.
+- **validacaoUsuario.cy.js**: Validates creation, visualization, and deletion of users in the UI.
 
 ### `cypress/fixtures/`
-Contém os arquivos de dados de teste (fixtures) usados nos testes.
-- **login.json**: Dados de login utilizados para realizar testes de autenticação.
-- **produtos.png**: Imagem de exemplo usada em testes de cadastro de produtos.
-- **produtos.json**: Dados de exemplo para a criação de produtos.
-- **usuarios.json**: Dados de exemplo para a criação de usuários.
+Contains the test data files (fixtures) used in the tests.
+- **login.json**: Login credentials for tests.
+- **produtos.png**: Sample image for product creation.
+- **produtos.json**: Sample product data.
+- **usuarios.json**: Sample user data.
 
 ### `cypress/pageObjects/`
-Contém os arquivos de Page Objects, que encapsulam interações com a interface do usuário (UI) para facilitar a reutilização e a manutenção dos testes.
-- **cadastroProdutoPage.js**: Página de cadastro de produtos.
-- **cadastroUsuarioAdminPage.js**: Página de cadastro de usuários com perfil de admin.
-- **cadastroUsuarioLoginPage.js**: Página de cadastro de usuários para login.
-- **listaProdutosPage.js**: Página que lista os produtos cadastrados.
-- **listaUsuariosPage.js**: Página que lista os usuários cadastrados.
-- **loginPage.js**: Página de login, onde o usuário insere suas credenciais.
+It contains the Page Objects files, which encapsulate interactions with the user interface (UI) to facilitate the reuse and maintenance of tests.
+- **cadastroProdutoPage.js**: Product creation page.
+- **cadastroUsuarioAdminPage.js**: Admin user creation page.
+- **cadastroUsuarioLoginPage.js**: Login user creation page.
+- **listaProdutosPage.js**: Product listing page.
+- **listaUsuariosPage.js**: User listing page.
+- **loginPage.js**: Login page.
 
 ### `cypress/support/`
-Contém arquivos de suporte para os testes.
-- **commands.js**: Arquivo onde comandos customizados são definidos, como login automatizado e outras funções reutilizáveis.
-- **e2e.js**: Configurações globais para os testes E2E.
+Contains supporting files for the tests.
+- **commands.js**: Custom reusable commands.
+- **e2e.js**: Global Cypress configuration.
 
 ### `cypress/screenshots/`
-Contém as capturas de tela geradas durante a execução dos testes. As imagens são salvas automaticamente quando há falhas nos testes.
+Stores screenshots from failed tests.
 
 ### `cypress/videos/`
-Contém os vídeos das execuções dos testes. As gravações são feitas quando a execução é configurada para gerar vídeos (geralmente útil para depuração).
+Stores videos from test executions.
 
 ### `cypress/scripts/`
-Contém scripts auxiliares que podem ser usados durante a execução do Cypress.
-- **cleanCypressDirs.js**: Script para limpar os diretórios de screenshots e vídeos antes da execução dos testes, garantindo que os dados antigos não interfiram nos novos testes.
+It contains auxiliary scripts that can be used while Cypress is running.
+- **cleanCypressDirs.js**: Cleans screenshots and videos before each run
 
 ---
 
@@ -156,46 +156,46 @@ Contém scripts auxiliares que podem ser usados durante a execução do Cypress.
 
 ## ✅ Frontend
 
-- Login de usuários
-- Cadastro de produtos com imagem
-- Listagem e exclusão de produtos
-- Cadastro e exclusão de usuários
-- Intercepts para validação de requisições XHR ((XML HTTP Request))
-- Upload de imagem via cypress-file-upload
+- User login.
+- Product creation with image upload.
+- Product listing and deletion.
+- User registration and deletion.
+- XHR request validation using cy.intercept().
+- File upload using cypress-file-upload.
 
 ## ✅ API
 
-- Login via API
-- Validação de senha errada
-- Validação de email inexistente
-- Cadastro de produtos com token
-- Validação de produto duplicado
-- Atualização e exclusão de produtos
-- Cadastrar novo usuário
-- Validar cadastro de usuário existente
-- Listar usuários cadastrados e encontrar usuário cadastrado anteriomente
-- Deletar usuário cadastrado
+- Login via API.
+- Invalid password validation.
+- Nonexistent email validation.
+- Product registration with JWT token.
+- Duplicate product validation.
+- Product update and deletion.
+- User creation.
+- Existing user validation.
+- Listing users and locating previously created users.
+- User deletion.
 
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-1. Faça um fork deste repositório.
-2. Crie uma branch para sua funcionalidade:
+1. Fork this repository.
+2. Create a new branch:
    ```bash
-   git checkout -b feature-nome-da-funcionalidade
+   git checkout -b feature-name-of-functionality
    ```
-3. Faça as modificações necessárias e commit:
+3. Make your changes and commit:
    ```bash
    git commit -am 'Adicionando nova funcionalidade'
    ```
-4. Envie sua branch para o repositório remoto:
+4. Push your branch:
    ```bash
    git push origin feature-nome-da-funcionalidade
    ```
-5. Abra um pull request.
+5. Open a pull request.
 
 ---
 
-## ✍️ Autor
-Desenvolvido por **Wagner Campos Martins de Lima**
+## ✍️ Author
+Developed by **Wagner Campos Martins de Lima**
 
