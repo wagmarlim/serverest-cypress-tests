@@ -60,7 +60,7 @@ It could be found in `scripts/cleanCypressDirs.js`.
 
 ---
 
-## 📁 Estrutura de Pastas
+## 📁 Folder Structure
 
 ```
 cypress/
