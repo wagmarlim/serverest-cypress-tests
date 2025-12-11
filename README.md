@@ -6,30 +6,30 @@ This repository contains automated E2E scenarios for the frontend and API tests 
 - API: https://serverest.dev/
 - FrontEnd: https://front.serverest.dev/
 
-## ✅ Prerequisites
+## ✅ Pré-requisitos
 
 - [Node.js](https://nodejs.org/)
-- npm or yarn
-- Git installed
-- Cypress (installed via npm)
-  ```bash
-  npm install cypress --save-dev
-  ```
-- To perform tests that involve uploading files, you need to install the `cypress-file-upload` plugin:
-  ```bash
-  npm install --save-dev cypress-file-upload
-  ```
+- npm ou yarn
+- Git instalado
+- Cypress (instalado via npm)
+```bash
+npm install cypress --save-dev
+```
+- Para testes que envolvem upload de arquivos, instale o plugin `cypress-file-upload`:
+```bash
+npm install --save-dev cypress-file-upload
+```
 
-- For better performance in excluding screenshots and videos when starting a new test run, we will use the `fs-extra` package, which helps manage directories and works better on different operating systems:
-  ```bash
-  npm install fs-extra --save-dev
-  ```
+- Para manipular diretórios (limpeza de screenshots/videos) use `fs-extra`:
+```bash
+npm install fs-extra --save-dev
+```
 
 ---
 
-## 📦 Installation
+## 📦 Instalação
 
-Clone the project and install the dependencies:
+Clone o projeto e instale as dependências:
 
 ```bash
 git clone https://github.com/seu-usuario/serverest-cypress-tests.git
@@ -39,160 +39,109 @@ npm install
 
 ---
 
-## 🧪 Running the Tests
+## 🧪 Executando os testes
 
-Open Cypress with GUI:
+Abrir Cypress (GUI):
 ```bash
 npm test
 ```
 
-Run all tests in headless mode:
+Rodar todos os testes em headless:
 ```bash
 npx cypress run
 ```
 
 ---
 
-## 🧹 Automatic Cleanup of Old Evidence
+## 🧹 Limpeza automática de evidências
 
-Before each test run, the script cleanCypressDirs.js deletes old screenshot and video folders.
-It could be found in `scripts/cleanCypressDirs.js`.
+O script `scripts/cleanCypressDirs.js` apaga screenshots e vídeos antigos antes de novas execuções.
 
 ---
 
-## 📁 Folder Structure
+## 📁 Estrutura do projeto
 
 ```
 cypress/
 ├── e2e/
 │   ├── api/
-│   │   ├── loginValidations.cy.js
-│   │   ├── productsValidations.cy.js
-│   │   └── userValidations.cy.js
 │   └── frontend/
-│       ├── validacaoLogin.cy.js
-│       ├── validacaoProdutos.cy.js
-│       └── validacaoUsuario.cy.js
-│
 ├── fixtures/
-│   ├── login.json
-│   ├── produtos.png
-│   ├── produtos.json
-│   └── usuarios.json
-│
 ├── pageObjects/
-│   ├── cadastroProdutoPage.js
-│   ├── cadastroUsuarioAdminPage.js
-│   ├── cadastroUsuarioLoginPage.js
-│   ├── listaProdutosPage.js
-│   ├── listaUsuariosPage.js
-│   └── loginPage.js
-│
 ├── support/
-│   ├── commands.js
-│   ├── e2e.js
-│
 ├── screenshots/
 ├── videos/
 └── scripts/
-    └── cleanCypressDirs.js
 ```
 
----
-
-## 🧱 Test Structure
-
-The test suite is organized as follows:
-
-### `cypress/e2e/`
-Contains automated tests divided into API and Frontend.
-
-#### `api/`
-It contains API tests that validate the application's integration with backend services.
-- **loginValidations.cy.js**: Validates user login via API.
-- **productsValidations.cy.js**: Validates product creation, update, and deletion.
-- **userValidations.cy.js**: Validates user creation, update, and deletion.
-
-#### `frontend/`
-Contains the E2E tests for the application's frontend.
-- **validacaoLogin.cy.js**: Validates the login process in the UI.
-- **validacaoProdutos.cy.js**: Validates creation, visualization, and deletion of products in the UI.
-- **validacaoUsuario.cy.js**: Validates creation, visualization, and deletion of users in the UI.
-
-### `cypress/fixtures/`
-Contains the test data files (fixtures) used in the tests.
-- **login.json**: Login credentials for tests.
-- **produtos.png**: Sample image for product creation.
-- **produtos.json**: Sample product data.
-- **usuarios.json**: Sample user data.
-
-### `cypress/pageObjects/`
-It contains the Page Objects files, which encapsulate interactions with the user interface (UI) to facilitate the reuse and maintenance of tests.
-- **cadastroProdutoPage.js**: Product creation page.
-- **cadastroUsuarioAdminPage.js**: Admin user creation page.
-- **cadastroUsuarioLoginPage.js**: Login user creation page.
-- **listaProdutosPage.js**: Product listing page.
-- **listaUsuariosPage.js**: User listing page.
-- **loginPage.js**: Login page.
-
-### `cypress/support/`
-Contains supporting files for the tests.
-- **commands.js**: Custom reusable commands.
-- **e2e.js**: Global Cypress configuration.
-
-### `cypress/screenshots/`
-Stores screenshots from failed tests.
-
-### `cypress/videos/`
-Stores videos from test executions.
-
-### `cypress/scripts/`
-It contains auxiliary scripts that can be used while Cypress is running.
-- **cleanCypressDirs.js**: Cleans screenshots and videos before each run
+Detalhes em `cypress/e2e/`, `cypress/pageObjects/` e `cypress/fixtures/`.
 
 ---
 
-## 📌 Funcionalidades Testadas
+## 🧱 Organização dos testes
 
-## ✅ Frontend
+- `cypress/e2e/api`: testes de integração com backend (login, produtos, usuários).
+- `cypress/e2e/frontend`: testes E2E da interface (login, produtos, usuários).
+- `cypress/fixtures`: dados de teste reutilizáveis.
+- `cypress/pageObjects`: Page Objects para encapsular interações com UI.
+- `cypress/support`: comandos e configuração global.
 
-- User login.
-- Product creation with image upload.
-- Product listing and deletion.
-- User registration and deletion.
-- XHR request validation using cy.intercept().
-- File upload using cypress-file-upload.
+---
 
-## ✅ API
+## **Atualizações Recentes**
 
-- Login via API.
-- Invalid password validation.
-- Nonexistent email validation.
-- Product registration with JWT token.
-- Duplicate product validation.
-- Product update and deletion.
-- User creation.
-- Existing user validation.
-- Listing users and locating previously created users.
-- User deletion.
+- **Intercepts e validações de rede (fail-fast):** Foram adicionados `cy.intercept()` e `cy.wait()` com aliases em vários testes de frontend para garantir que rotas críticas (ex: `**/produtos**`, requisições de edição) sejam chamadas e validadas; se a API permitir ações indevidas para usuários não-admin, os testes falham imediatamente com uma mensagem clara de BUG.
+- **Timeouts reduzidos para fail-fast:** Vários `cy.wait()` e assertivas tiveram timeouts reduzidos (p.ex. para 3000–5000ms) para evitar que testes fiquem longos quando uma requisição não ocorre.
+- **Page Objects otimizados para performance:** `cypress/pageObjects/listaProdutosPage.js` e `listaUsuariosPage.js` passaram a usar busca em memória via `Cypress.$(el).text()` + `filter()` em vez de depender de scrolls (evita rolagem desnecessária e acelera localização de linhas em tabelas grandes).
+- **Carregamento controlado de tabelas:** Adicionado método `carregarTodosOsElementos()` que faz um pequeno scroll até o fim da tabela para lidar com lazy-loading antes de buscar elementos.
+- **Testes API para usuários não-admin:** Novos specs focados em validar que usuários não-admin não conseguem criar/atualizar/deletar produtos e usuários (`cypress/e2e/api/validacaoProdutoApi.cy.js`, `cypress/e2e/api/validacaoUsuarioApi.cy.js`). Esses testes criam usuários não-admin dinamicamente, usam token admin para setup/teardown e validam respostas (esperam 401/403; se 200/201 é reportado como BUG).
+- **Criação dinâmica e cleanup:** Em vez de fixtures estáticas para usuários não-admin, os testes criam usuários dinamicamente via API quando possível e armazenam IDs para remoção na etapa de `afterEach`, garantindo um ambiente limpo.
+- **Ajustes no payload:** Ajustes nos payloads enviados ao API (ex: `administrador` enviado como string `'true'`/`'false'`) para corresponder às validações da API e evitar `400 Bad Request`.
+- **Fallback de credenciais admin:** Login admin nos testes agora tenta credenciais provenientes de `Cypress.env` (variáveis de ambiente) antes de cair para fixtures, para facilitar execução em ambientes distintos.
 
+## **Padrões de Projeto**
 
-## 🤝 Contributing
+- **Page Object Pattern:** A interação com a UI está encapsulada em arquivos sob `cypress/pageObjects/` (`LoginPage`, `ListaProdutosPage`, `CadastroProdutoPage`, etc.). Isso melhora a reutilização, clareza e manutenção dos testes.
+- **Separation of Concerns (Frontend x API):** Testes UI e API estão separados (`cypress/e2e/frontend` vs `cypress/e2e/api`) para permitir execuções independentes e diagnósticos mais rápidos.
+- **Fixture-driven data:** Dados repetíveis e previsíveis são armazenados em `cypress/fixtures/` para cenários que não exigem criação dinâmica.
+- **Custom commands e helpers:** Operações repetitivas ficam em `cypress/support/commands.js` e helpers (ex: scripts de limpeza em `scripts/`) para manter testes concisos.
 
-1. Fork this repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature-name-of-functionality
-   ```
-3. Make your changes and commit:
-   ```bash
-   git commit -am 'Adicionando nova funcionalidade'
-   ```
-4. Push your branch:
-   ```bash
-   git push origin feature-nome-da-funcionalidade
-   ```
-5. Open a pull request.
+## **Boas Práticas Adotadas**
+
+- **Fail-fast nas expectativas de rede:** Interceptamos requisições críticas e assertamos o código HTTP (esperando 200 quando permitido, ou 401/403 quando não). Se uma rota for permitida indevidamente, os testes lançam um erro explícito com tag `BUG:` para facilitar triagem.
+- **Setup determinístico via API quando aplicável:** Quando possível, os testes usam chamadas API para criar/limpar recursos (usuários/produtos) em vez do fluxo UI — isso torna os testes mais rápidos e menos frágeis.
+- **Isolamento e cleanup:** IDs de recursos criados são rastreados e removidos em hooks `afterEach`/`after` para evitar poluição do ambiente de testes.
+- **Evitar rolagem excessiva:** Busca de elementos em tabelas foi alterada para filtragem in-memory, evitando scrolls longos que tornam os testes lentos e instáveis.
+- **Uso de aliases e intercepts padronizados:** Todos os pontos de rede relevantes usam alias (`@listarProdutos`, `@cadastrarProduto`, `@produtosRequest`), facilitando espera e assertivas.
+- **Mensagens de erro claras e assertivas:** Em casos de comportamento inesperado do backend, o teste falha com mensagens explícitas que facilitam o diagnóstico (ex: `BUG: API permitiu ...`).
+- **Uso de variáveis de ambiente para credenciais sensíveis:** Preferência por `Cypress.env()` para admin credentials, permitindo execução segura em CI.
+- **Evidência para debug:** Capturas (`screenshots/`) e vídeos (`videos/`) são mantidos por execução para análise de falhas; o script `scripts/cleanCypressDirs.js` limpa-os antes de novas execuções.
+
+## **Como executar os testes (dicas e opções)**
+
+- Executar apenas um spec (UI de produtos):
+```bash
+npx cypress run --spec "cypress/e2e/frontend/validacaoProdutos.cy.js"
+```
+
+- Fornecer credenciais admin via `--env` (útil quando fixtures não funcionam com o ambiente público):
+```bash
+npx cypress run --spec "cypress/e2e/frontend/validacaoProdutos.cy.js" --env adminEmail=seu@admin.com,adminPassword=SenhaAdmin
+```
+
+- Executar todos os testes em modo headless:
+```bash
+npx cypress run
+```
+
+## **Observações e próximos passos recomendados**
+
+- Se os testes falharem por `401 Unauthorized` usando fixtures, forneça credenciais admin válidas via `--env` ou `cypress.env.json` para o ambiente alvo.
+- Considere migrar todos os fluxos de criação/limpeza de usuários para chamadas API (onde possível) para acelerar e estabilizar a suíte.
+- Se desejar, posso:
+  - Converter os testes UI de criação de usuário para criação via API com cleanup automatizado.
+  - Adicionar um utilitário central de login (API) para reduzir repetição de hooks.
+  - Adicionar um script de geração de dados de teste com variáveis configuráveis.
 
 ---
 

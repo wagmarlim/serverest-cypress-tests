@@ -10,7 +10,9 @@ const listaUsuariosPage = new ListaUsuariosPage()
 
 let usuario
 
+// Frontend: testes de usuário (criação via tela de login, criação por admin, edição e exclusão).
 describe('Validação de Usuário', () => {
+  // Criação via tela de login: gera e salva credenciais para uso posterior
   it('Deve cadastrar um novo usuário como admin com sucesso pela tela de login', () => {
     cy.fixture('usuarios').then((user) => {
 
@@ -31,6 +33,7 @@ describe('Validação de Usuário', () => {
     })
   })
 
+  // Criação por admin logado: usa o usuário criado anteriormente para autenticar e criar outro usuário
   it('Deve cadastrar um novo usuário com sucesso logado como admin', () => {
     const email = Cypress.env('emailNovoUsuario')
     const senha = Cypress.env('senhaNovoUsuario')
@@ -63,6 +66,7 @@ describe('Validação de Usuário', () => {
     cy.screenshotWithTimestamp('cadastro-usuario-adminpage-sucesso')
   })
 
+  // Exclusão: loga como admin padrão e remove o usuário criado anteriormente
   it('Deve encontrar e deletar o usuário cadastrado na lista', () => {
 
     cy.fixture('usuarios').then((user) => {
