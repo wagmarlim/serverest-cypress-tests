@@ -133,16 +133,6 @@ npx cypress run --spec "cypress/e2e/frontend/validacaoProdutos.cy.js" --env admi
 ```bash
 npx cypress run
 ```
-
-## **Observações e próximos passos recomendados**
-
-- Se os testes falharem por `401 Unauthorized` usando fixtures, forneça credenciais admin válidas via `--env` ou `cypress.env.json` para o ambiente alvo.
-- Considere migrar todos os fluxos de criação/limpeza de usuários para chamadas API (onde possível) para acelerar e estabilizar a suíte.
-- Se desejar, posso:
-  - Converter os testes UI de criação de usuário para criação via API com cleanup automatizado.
-  - Adicionar um utilitário central de login (API) para reduzir repetição de hooks.
-  - Adicionar um script de geração de dados de teste com variáveis configuráveis.
-
 ---
 
 ## ✍️ Author
